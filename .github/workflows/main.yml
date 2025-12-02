@@ -1,0 +1,183 @@
+name: Clean Old Releases and Orphaned Tags
+
+on:
+  workflow_dispatch:
+    inputs:
+      keep_latest:
+        description: 'Number of latest releases to keep'
+        required: false
+        default: '10'
+        type: string
+      dry_run:
+        description: 'Dry run (no actual deletion)'
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    - cron: '0 0 * * 0' # Run weekly on Sundays at midnight
+
+jobs:
+  clean-releases-and-tags:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history and tags
+      
+      - name: Clean old releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KEEP_LATEST: ${{ github.event.inputs.keep_latest || '10' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          #!/bin/bash
+          set -e
+          
+          echo "=== Cleaning Old Releases ==="
+          echo "Keeping latest $KEEP_LATEST releases"
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "DRY RUN MODE - No actual deletions will occur"
+          fi
+          
+          # Fetch all releases sorted by creation date (newest first)
+          page=1
+          all_releases=""
+          while true; do
+            response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/${{ github.repository }}/releases?per_page=100&page=$page")
+            
+            if [ "$response" = "[]" ]; then
+              break
+            fi
+            
+            all_releases="$all_releases"$'\n'"$response"
+            page=$((page + 1))
+          done
+          
+          # Combine all pages into single JSON array
+          all_releases=$(echo "$all_releases" | jq -s 'add')
+          
+          total_releases=$(echo "$all_releases" | jq 'length')
+          echo "Found $total_releases total releases"
+          
+          if [ "$total_releases" -le "$KEEP_LATEST" ]; then
+            echo "No releases to delete (total: $total_releases, keeping: $KEEP_LATEST)"
+          else
+            releases_to_delete=$((total_releases - KEEP_LATEST))
+            echo "Will delete $releases_to_delete old releases"
+            
+            # Get releases to delete (skip first KEEP_LATEST)
+            old_releases=$(echo "$all_releases" | jq -r ".[$KEEP_LATEST:] | .[] | .id + \" \" + .tag_name")
+            
+            deleted_count=0
+            while IFS=' ' read -r release_id tag_name; do
+              echo "Processing release: $tag_name (ID: $release_id)"
+              
+              if [ "$DRY_RUN" = "true" ]; then
+                echo "  [DRY RUN] Would delete release: $tag_name"
+                deleted_count=$((deleted_count + 1))
+              else
+                if curl -s -X DELETE \
+                  -H "Authorization: token $GITHUB_TOKEN" \
+                  "https://api.github.com/repos/${{ github.repository }}/releases/$release_id" \
+                  -w "%{http_code}" -o /dev/null | grep -q "204"; then
+                  deleted_count=$((deleted_count + 1))
+                  echo "  ✓ Deleted release: $tag_name"
+                else
+                  echo "  ✗ Failed to delete release: $tag_name"
+                fi
+              fi
+            done <<< "$old_releases"
+            
+            echo "Deleted $deleted_count old releases"
+          fi
+          
+          echo ""
+      
+      - name: Clean orphaned tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          #!/bin/bash
+          set -e
+          
+          echo "=== Cleaning Orphaned Tags ==="
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "DRY RUN MODE - No actual deletions will occur"
+          fi
+          
+          # Get all tags
+          all_tags=$(git tag)
+          
+          # Get all tags associated with releases using GitHub API
+          page=1
+          release_tags=""
+          while true; do
+            response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/${{ github.repository }}/releases?per_page=100&page=$page")
+            
+            if [ "$response" = "[]" ]; then
+              break
+            fi
+            
+            page_tags=$(echo "$response" | jq -r '.[].tag_name')
+            release_tags="$release_tags"$'\n'"$page_tags"
+            page=$((page + 1))
+          done
+          
+          release_tags=$(echo "$release_tags" | grep -v '^$' || true)
+          
+          echo "Found $(echo "$all_tags" | wc -l) total tags"
+          echo "Found $(echo "$release_tags" | wc -l) tags with releases"
+          
+          # Find orphaned tags
+          orphaned_tags=""
+          for tag in $all_tags; do
+            if ! echo "$release_tags" | grep -q "^${tag}$"; then
+              orphaned_tags="$orphaned_tags $tag"
+            fi
+          done
+          
+          if [ -z "$orphaned_tags" ]; then
+            echo "No orphaned tags found. Nothing to clean."
+            exit 0
+          fi
+          
+          echo "Found orphaned tags: $orphaned_tags"
+          
+          deleted_count=0
+          for tag in $orphaned_tags; do
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "[DRY RUN] Would delete tag: $tag"
+              deleted_count=$((deleted_count + 1))
+            else
+              echo "Deleting tag: $tag"
+              if git push origin --delete "$tag" 2>/dev/null; then
+                deleted_count=$((deleted_count + 1))
+                echo "✓ Deleted: $tag"
+              else
+                echo "✗ Failed to delete: $tag"
+              fi
+            fi
+          done
+          
+          echo "Cleanup complete! Deleted $deleted_count orphaned tags."
+      
+      - name: Summary
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          echo "### Cleanup Summary" >> $GITHUB_STEP_SUMMARY
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "**Mode:** Dry Run (no actual deletions)" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✓ Old releases have been cleaned" >> $GITHUB_STEP_SUMMARY
+          echo "✓ Orphaned tags have been removed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Check the logs above for detailed information." >> $GITHUB_STEP_SUMMARY
