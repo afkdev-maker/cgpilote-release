@@ -3,70 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Politique de confidentialité et protection des données personnelles - CGPilote RGPD">
     <title>Politique de Confidentialité - CGPilote</title>
-    <style>
-        body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #e4e4e7;
-            background: #0a0a0f;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        h2 {
-            font-size: 1.5em;
-            color: #f1f5f9;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-            padding-bottom: 10px;
-        }
-        p, ul {
-            color: #94a3b8;
-            margin-bottom: 16px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        strong {
-            color: #e2e8f0;
-        }
-        a {
-            color: #6366f1;
-            text-decoration: none;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 40px;
-            color: #94a3b8;
-            font-weight: 500;
-        }
-        .back-link:hover {
-            color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Retour à l'accueil</a>
         
         <h1>Politique de Confidentialité</h1>
-        <p>Dernière mise à jour : 26 Décembre 2025</p>
+        <p>Dernière mise à jour : 1er janvier 2026</p>
 
         <p>
             La protection de vos données personnelles est une priorité pour CGPilote. Cette politique de confidentialité détaille les données que nous collectons, comment nous les utilisons et vos droits, conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.
@@ -74,8 +20,8 @@
 
         <h2>1. Responsable du traitement</h2>
         <p>
-            Le responsable du traitement des données est <strong>[VOTRE NOM / SOCIÉTÉ]</strong>.<br>
-            Pour toute question relative à vos données, vous pouvez nous contacter à : <strong>[VOTRE EMAIL]</strong>.
+            Le responsable du traitement des données est <strong>XPERTLAKE</strong>.<br>
+            Pour toute question relative à vos données, vous pouvez nous contacter à : <strong>contact@cgpilote.fr</strong>.
         </p>
 
         <h2>2. Données collectées et Stockage Local</h2>
@@ -84,11 +30,12 @@
         <ul>
             <li><strong>Identité :</strong> Nom, Prénom.</li>
             <li><strong>Contact :</strong> Adresse email.</li>
-            <li><strong>Données techniques :</strong> Adresse IP, logs de connexion (sécurité).</li>
-            <li><strong>Abonnement :</strong> Statut et historique (via Stripe/Prestataire).</li>
+            <li><strong>Données techniques :</strong> Adresse IP, User-Agent, journaux de connexion et de sécurité.</li>
+            <li><strong>Authentification :</strong> identifiants techniques nécessaires au fonctionnement de l'authentification (via <strong>Supabase</strong>), y compris les métadonnées associées au compte.</li>
+            <li><strong>Abonnement :</strong> formule (Manager/Consultant), statut de souscription/expiration et historique de facturation/renouvellement (via notre infrastructure et/ou prestataires techniques).</li>
         </ul>
         <p><strong>2.2 Données Métiers (Stockage Local Uniquement) :</strong></p>
-        <div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; padding: 16px; border-radius: 4px; margin: 16px 0;">
+        <div class="important-clause">
             <p><strong>Architecture "Local First" :</strong> Toutes les données que vous saisissez concernant vos clients, ainsi que les documents générés par l'application, sont stockés <strong>exclusivement en local sur votre appareil</strong>.</p>
             <p>CGPilote n'a <strong>aucun accès</strong> à ces données métiers. Elles ne sont jamais transférées, stockées ou sauvegardées sur nos serveurs. Vous êtes seul responsable de leur sauvegarde.</p>
         </div>
@@ -111,15 +58,28 @@
         </ul>
 
         <h2>5. Destinataires des données</h2>
-        <p>Vos données sont destinées uniquement à CGPilote et à ses sous-traitants techniques strictement nécessaires (hébergement, paiement, envoi d'emails transactionnels). Nous ne vendons jamais vos données à des tiers.</p>
-
-        <h2>6. Durée de conservation</h2>
+        <p>Vos données sont destinées uniquement à CGPilote et à ses sous-traitants techniques strictement nécessaires (hébergement, authentification, infrastructure, distribution du logiciel, envoi d'emails transactionnels, facturation/paiement le cas échéant). Nous ne vendons jamais vos données à des tiers.</p>
+        <p><strong>Principaux prestataires techniques (au jour de la dernière mise à jour) :</strong></p>
         <ul>
-            <li><strong>Compte actif :</strong> Vos données sont conservées tant que votre compte est actif.</li>
-            <li><strong>Après clôture :</strong> Vos données sont supprimées ou anonymisées dans un délai de [X] mois, sauf obligation légale (ex: 10 ans pour les factures).</li>
+            <li><strong>Vercel</strong> : hébergement du site web (journaux techniques éventuels).</li>
+            <li><strong>Cloudflare</strong> : hébergement de l'API et de la base de données / infrastructure réseau.</li>
+            <li><strong>Supabase</strong> : authentification et gestion des comptes.</li>
+            <li><strong>GitHub</strong> : distribution du client desktop (téléchargements), et potentiellement hébergement de code/outillage.</li>
         </ul>
 
-        <h2>7. Vos droits</h2>
+        <h2>6. Transferts hors Union Européenne</h2>
+        <p>
+            Certains de nos prestataires peuvent traiter des données depuis des pays situés en dehors de l'Union Européenne. Dans ce cas, nous mettons en place les garanties appropriées prévues par le RGPD (par exemple, clauses contractuelles types) selon les modalités proposées par les prestataires.
+        </p>
+
+        <h2>7. Durée de conservation</h2>
+        <ul>
+            <li><strong>Compte actif :</strong> Vos données sont conservées tant que votre compte est actif.</li>
+            <li><strong>Journaux techniques (sécurité) :</strong> conservés pour une durée limitée (par défaut <strong>12 mois</strong>), sauf nécessité particulière liée à un incident de sécurité ou obligation légale.</li>
+            <li><strong>Après clôture :</strong> vos données de compte sont supprimées ou anonymisées dans un délai de <strong>12 mois</strong>, sauf obligation légale (ex : <strong>10 ans</strong> pour les pièces comptables/factures).</li>
+        </ul>
+
+        <h2>8. Vos droits</h2>
         <p>Conformément au RGPD, vous disposez des droits suivants :</p>
         <ul>
             <li>Droit d'accès et de rectification de vos données.</li>
@@ -128,9 +88,9 @@
             <li>Droit à la portabilité de vos données.</li>
             <li>Droit d'opposition.</li>
         </ul>
-        <p>Pour exercer ces droits, contactez-nous à : [VOTRE EMAIL]. Vous avez également le droit d'introduire une réclamation auprès de la CNIL (www.cnil.fr).</p>
+        <p>Pour exercer ces droits, contactez-nous à : contact@cgpilote.fr. Vous avez également le droit d'introduire une réclamation auprès de la CNIL (www.cnil.fr).</p>
 
-        <h2>8. Cookies et Traceurs</h2>
+        <h2>9. Cookies et Traceurs</h2>
         <p>
             <strong>Absence de traceurs publicitaires ou analytiques :</strong> Nous respectons votre vie privée par conception ("Privacy by Design").
         </p>
@@ -142,18 +102,17 @@
             En conséquence, le site ne nécessite pas de bandeau de consentement aux cookies, conformément aux recommandations de la CNIL pour les cookies strictement techniques.
         </p>
     </div>
-    <footer style="background: #0a0a0f; color: #64748b; text-align: center; padding: 56px 20px; border-top: 1px solid rgba(99, 102, 241, 0.1);">
+    
+    <footer>
         <div class="container">
-            <p style="font-size: 1.1em; color: #94a3b8;">&copy; 2026 CGPilote. Tous droits réservés.</p>
-            <p style="margin-top: 14px; color: #64748b;">
-                La solution de référence pour les Conseillers en Gestion de Patrimoine
-            </p>
-            <div style="margin-top: 32px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
-                <a href="../index.html" style="color: #64748b; text-decoration: none; font-size: 0.9em; transition: color 0.2s;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#64748b'">Accueil</a>
-                <a href="cguv.html" style="color: #64748b; text-decoration: none; font-size: 0.9em; transition: color 0.2s;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#64748b'">CGUV</a>
-                <a href="mentions-legales.html" style="color: #64748b; text-decoration: none; font-size: 0.9em; transition: color 0.2s;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#64748b'">Mentions Légales</a>
-                <a href="politique-confidentialite.html" style="color: #64748b; text-decoration: none; font-size: 0.9em; transition: color 0.2s;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#64748b'">Politique de Confidentialité</a>
-            </div>
+            <p class="tagline">&copy; 2026 CGPilote. Tous droits réservés.</p>
+            <p class="subtitle">La solution de référence pour les Conseillers en Gestion de Patrimoine</p>
+            <nav class="footer-links" aria-label="Navigation du pied de page">
+                <a href="../index.html">Accueil</a>
+                <a href="cguv.html">CGUV</a>
+                <a href="mentions-legales.html">Mentions Légales</a>
+                <a href="politique-confidentialite.html" aria-current="page">Politique de Confidentialité</a>
+            </nav>
         </div>
     </footer>
 </body>
