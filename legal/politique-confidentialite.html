@@ -1,123 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Politique de confidentialité et protection des données personnelles - CGPilote RGPD">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Politique de confidentialité et protection des données personnelles - CGPilote RGPD" />
     <title>Politique de Confidentialité - CGPilote</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Retour à l'accueil</a>
-        
-        <h1>Politique de Confidentialité</h1>
-        <p>Dernière mise à jour : 2 janvier 2026</p>
 
-        <p>
-            La protection de vos données personnelles est une priorité pour CGPilote. Cette politique de confidentialité détaille les données que nous collectons, comment nous les utilisons et vos droits, conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.
-        </p>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-        <h2>1. Responsable du traitement</h2>
-        <p>
-            Le responsable du traitement des données est <strong>XPERTLAKE</strong>.<br>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="ambient-glow"></div>
+      <div class="grid-lines"></div>
+
+      <header>
+        <div class="nav-content">
+          <a href="../index.html" class="logo">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            CGPilote
+          </a>
+          <a href="../index.html" class="back-btn">← Retour</a>
+        </div>
+      </header>
+
+      <main>
+        <div class="container">
+          <h1>Politique de Confidentialité</h1>
+          <p>Dernière mise à jour : 2 janvier 2026</p>
+
+          <p>
+            La protection de vos données personnelles est une priorité pour CGPilote. Cette politique de confidentialité détaille les données que nous
+            collectons, comment nous les utilisons et vos droits, conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi
+            Informatique et Libertés.
+          </p>
+
+          <h2>1. Responsable du traitement</h2>
+          <p>
+            Le responsable du traitement des données est <strong>XPERTLAKE</strong>.<br />
             Pour toute question relative à vos données, vous pouvez nous contacter à : <strong>contact@cgpilote.fr</strong>.
-        </p>
+          </p>
 
-        <h2>2. Données collectées et Stockage local</h2>
-        <p><strong>2.1 Données de Compte (Transmis au serveur) :</strong></p>
-        <p>Pour la gestion de votre accès et de votre abonnement, nous collectons uniquement les données suivantes qui sont stockées sur nos serveurs sécurisés :</p>
-        <ul>
+          <h2>2. Données collectées et Stockage local</h2>
+          <p><strong>2.1 Données de Compte (Transmis au serveur) :</strong></p>
+          <p>
+            Pour la gestion de votre accès et de votre abonnement, nous collectons uniquement les données suivantes qui sont stockées sur nos serveurs sécurisés
+            :
+          </p>
+          <ul>
             <li><strong>Identité :</strong> Nom, Prénom.</li>
             <li><strong>Contact :</strong> Adresse email.</li>
             <li><strong>Données techniques :</strong> Adresse IP, User-Agent, journaux de connexion et de sécurité.</li>
-            <li><strong>Authentification :</strong> identifiants techniques nécessaires au fonctionnement de l'authentification (via <strong>Supabase</strong>), y compris les métadonnées associées au compte.</li>
-            <li><strong>Abonnement :</strong> formule (Manager/Consultant), statut de souscription/expiration et historique de facturation/renouvellement (via notre infrastructure et/ou prestataires techniques).</li>
-        </ul>
-        <p>
-            <strong>Précision :</strong> nos serveurs (notamment via l'infrastructure <strong>Cloudflare</strong>) ne traitent que des données nécessaires au <strong>compte</strong>, à la <strong>gestion d'abonnement</strong> et à la <strong>sécurité</strong>. Nous ne collectons pas les données métiers relatives aux clients finaux.
-        </p>
-        <p><strong>2.2 Données Métiers (Stockage Local Uniquement) :</strong></p>
-        <div class="important-clause">
-            <p><strong>Architecture "Local First" :</strong> Toutes les données que vous saisissez concernant vos clients, ainsi que les documents générés par l'application, sont stockés <strong>exclusivement en local sur votre appareil</strong>.</p>
-            <p>CGPilote n'a <strong>aucun accès</strong> à ces données métiers. Elles ne sont jamais transférées, stockées ou sauvegardées sur nos serveurs. Vous êtes seul responsable de leur sauvegarde.</p>
-        </div>
+            <li>
+              <strong>Authentification :</strong> identifiants techniques nécessaires au fonctionnement de l'authentification (via <strong>Supabase</strong>), y
+              compris les métadonnées associées au compte.
+            </li>
+            <li>
+              <strong>Abonnement :</strong> formule (Manager/Consultant), statut de souscription/expiration et historique de facturation/renouvellement (via
+              notre infrastructure et/ou prestataires techniques).
+            </li>
+          </ul>
+          <p>
+            <strong>Précision :</strong> nos serveurs (notamment via l'infrastructure <strong>Cloudflare</strong>) ne traitent que des données nécessaires au
+            <strong>compte</strong>, à la <strong>gestion d'abonnement</strong> et à la <strong>sécurité</strong>. Nous ne collectons pas les données métiers
+            relatives aux clients finaux.
+          </p>
+          <p><strong>2.2 Données Métiers (Stockage Local Uniquement) :</strong></p>
+          <div class="important-clause">
+            <p>
+              <strong>Architecture "Local First" :</strong> Toutes les données que vous saisissez concernant vos clients, ainsi que les documents générés par
+              l'application, sont stockés <strong>exclusivement en local sur votre appareil</strong>.
+            </p>
+            <p>
+              CGPilote n'a <strong>aucun accès</strong> à ces données métiers. Elles ne sont jamais transférées, stockées ou sauvegardées sur nos serveurs. Vous
+              êtes seul responsable de leur sauvegarde.
+            </p>
+          </div>
 
-        <h2>3. Finalités du traitement</h2>
-        <p>Vos données sont collectées pour les finalités suivantes :</p>
-        <ul>
+          <h2>3. Finalités du traitement</h2>
+          <p>Vos données sont collectées pour les finalités suivantes :</p>
+          <ul>
             <li><strong>Fourniture du service :</strong> Création de compte, accès aux fonctionnalités de l'application.</li>
             <li><strong>Gestion de la relation client :</strong> Support technique, notifications liées au service (mises à jour, expiration d'abonnement).</li>
             <li><strong>Sécurité :</strong> Détection des activités suspectes, protection contre les accès non autorisés.</li>
             <li><strong>Obligations légales :</strong> Facturation, comptabilité.</li>
-        </ul>
+          </ul>
 
-        <h2>4. Base légale</h2>
-        <p>Les traitements reposent sur :</p>
-        <ul>
+          <h2>4. Base légale</h2>
+          <p>Les traitements reposent sur :</p>
+          <ul>
             <li><strong>L'exécution du contrat :</strong> Pour la fourniture du service et la gestion de votre abonnement.</li>
             <li><strong>L'intérêt légitime :</strong> Pour assurer la sécurité du service.</li>
             <li><strong>L'obligation légale :</strong> Pour la conservation des factures.</li>
-        </ul>
+          </ul>
 
-        <h2>5. Destinataires des données</h2>
-        <p>Vos données sont destinées uniquement à CGPilote et à ses sous-traitants techniques strictement nécessaires (hébergement, authentification, infrastructure, distribution du logiciel, envoi d'emails transactionnels, facturation/paiement le cas échéant). Nous ne vendons jamais vos données à des tiers.</p>
-        <p><strong>Principaux prestataires techniques (au jour de la dernière mise à jour) :</strong></p>
-        <ul>
+          <h2>5. Destinataires des données</h2>
+          <p>
+            Vos données sont destinées uniquement à CGPilote et à ses sous-traitants techniques strictement nécessaires (hébergement, authentification,
+            infrastructure, distribution du logiciel, envoi d'emails transactionnels, facturation/paiement le cas échéant). Nous ne vendons jamais vos données à
+            des tiers.
+          </p>
+          <p><strong>Principaux prestataires techniques (au jour de la dernière mise à jour) :</strong></p>
+          <ul>
             <li><strong>Vercel</strong> : hébergement du site web (journaux techniques éventuels).</li>
             <li><strong>Cloudflare</strong> : hébergement de l'API et de la base de données / infrastructure réseau.</li>
             <li><strong>Supabase</strong> : authentification et gestion des comptes.</li>
             <li><strong>GitHub</strong> : distribution du client desktop (téléchargements), et potentiellement hébergement de code/outillage.</li>
             <li><strong>Qonto</strong> : traitement des paiements en ligne (le cas échéant) et exécution des opérations de paiement associées.</li>
-        </ul>
+          </ul>
 
-        <h2>6. Transferts hors Union Européenne</h2>
-        <p>
-            Certains de nos prestataires peuvent traiter des données depuis des pays situés en dehors de l'Union Européenne. Dans ce cas, nous mettons en place les garanties appropriées prévues par le RGPD (par exemple, clauses contractuelles types) selon les modalités proposées par les prestataires.
-        </p>
+          <h2>6. Transferts hors Union Européenne</h2>
+          <p>
+            Certains de nos prestataires peuvent traiter des données depuis des pays situés en dehors de l'Union Européenne. Dans ce cas, nous mettons en place
+            les garanties appropriées prévues par le RGPD (par exemple, clauses contractuelles types) selon les modalités proposées par les prestataires.
+          </p>
 
-        <h2>7. Durée de conservation</h2>
-        <ul>
+          <h2>7. Durée de conservation</h2>
+          <ul>
             <li><strong>Compte actif :</strong> Vos données sont conservées tant que votre compte est actif.</li>
-            <li><strong>Journaux techniques (sécurité) :</strong> conservés pour une durée limitée (par défaut <strong>12 mois</strong>), sauf nécessité particulière liée à un incident de sécurité ou obligation légale.</li>
-            <li><strong>Après clôture :</strong> vos données de compte sont supprimées ou anonymisées dans un délai de <strong>12 mois</strong>, sauf obligation légale (ex : <strong>10 ans</strong> pour les pièces comptables/factures).</li>
-        </ul>
+            <li>
+              <strong>Journaux techniques (sécurité) :</strong> conservés pour une durée limitée (par défaut <strong>12 mois</strong>), sauf nécessité
+              particulière liée à un incident de sécurité ou obligation légale.
+            </li>
+            <li>
+              <strong>Après clôture :</strong> vos données de compte sont supprimées ou anonymisées dans un délai de <strong>12 mois</strong>, sauf obligation
+              légale (ex : <strong>10 ans</strong> pour les pièces comptables/factures).
+            </li>
+          </ul>
 
-        <h2>8. Vos droits</h2>
-        <p>Conformément au RGPD, vous disposez des droits suivants :</p>
-        <ul>
+          <h2>8. Vos droits</h2>
+          <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+          <ul>
             <li>Droit d'accès et de rectification de vos données.</li>
             <li>Droit à l'effacement ("droit à l'oubli").</li>
             <li>Droit à la limitation du traitement.</li>
             <li>Droit à la portabilité de vos données.</li>
             <li>Droit d'opposition.</li>
-        </ul>
-        <p>Pour exercer ces droits, contactez-nous à : contact@cgpilote.fr. Vous avez également le droit d'introduire une réclamation auprès de la CNIL (www.cnil.fr).</p>
+          </ul>
+          <p>
+            Pour exercer ces droits, contactez-nous à : contact@cgpilote.fr. Vous avez également le droit d'introduire une réclamation auprès de la CNIL
+            (www.cnil.fr).
+          </p>
 
-        <h2>9. Cookies et Traceurs</h2>
-        <p>
-            <strong>Absence de traceurs publicitaires ou analytiques :</strong> Nous respectons votre vie privée par conception ("Privacy by Design").
-        </p>
-        <ul>
-            <li><strong>Cookies strictement nécessaires :</strong> Nous utilisons uniquement des cookies techniques indispensables au fonctionnement du service (authentification, session sécurisée, protection anti-abus et sécurité).</li>
-            <li><strong>Zéro Analytics :</strong> Nous n'utilisons aucun outil d'analyse de trafic tiers (type Google Analytics), aucun outil de profilage marketing, et aucun cookie publicitaire.</li>
-        </ul>
-        <p>
-            En conséquence, le site ne nécessite pas de bandeau de consentement aux cookies, conformément aux recommandations de la CNIL pour les cookies strictement techniques.
-        </p>
-    </div>
-    
-    <footer>
-        <div class="container">
+          <h2>9. Cookies et Traceurs</h2>
+          <p><strong>Absence de traceurs publicitaires ou analytiques :</strong> Nous respectons votre vie privée par conception ("Privacy by Design").</p>
+          <ul>
+            <li>
+              <strong>Cookies strictement nécessaires :</strong> Nous utilisons uniquement des cookies techniques indispensables au fonctionnement du service
+              (authentification, session sécurisée, protection anti-abus et sécurité).
+            </li>
+            <li>
+              <strong>Zéro Analytics :</strong> Nous n'utilisons aucun outil d'analyse de trafic tiers (type Google Analytics), aucun outil de profilage
+              marketing, et aucun cookie publicitaire.
+            </li>
+          </ul>
+          <p>
+            En conséquence, le site ne nécessite pas de bandeau de consentement aux cookies, conformément aux recommandations de la CNIL pour les cookies
+            strictement techniques.
+          </p>
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer-content">
+          <div class="container">
             <p class="tagline">&copy; 2026 CGPilote. Tous droits réservés.</p>
             <p class="subtitle">La solution de référence pour les Conseillers en Gestion de Patrimoine</p>
             <nav class="footer-links" aria-label="Navigation du pied de page">
-                <a href="../index.html">Accueil</a>
-                <a href="cguv.html">CGUV</a>
-                <a href="mentions-legales.html">Mentions Légales</a>
-                <a href="politique-confidentialite.html" aria-current="page">Politique de Confidentialité</a>
+              <a href="../index.html">Accueil</a>
+              <a href="cguv.html">CGUV</a>
+              <a href="mentions-legales.html">Mentions Légales</a>
+              <a href="politique-confidentialite.html" aria-current="page">Politique de Confidentialité</a>
             </nav>
+          </div>
         </div>
-    </footer>
-</body>
+      </footer>
+    </div>
+  </body>
 </html>
