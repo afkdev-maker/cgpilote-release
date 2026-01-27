@@ -28,16 +28,18 @@
       }
 
       * {
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
       }
 
+      html,
       body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
         font-family: "Inter", sans-serif;
         background-color: var(--bg-deep);
         color: var(--text-main);
-        overflow-x: hidden;
         line-height: 1.6;
       }
 
@@ -474,9 +476,35 @@
       }
 
       /* Responsive */
+      @media (max-width: 1024px) {
+        .download-section,
+        a[href="#download"] {
+          display: none !important;
+        }
+
+        .hero-cta {
+          display: flex;
+          justify-content: center;
+          gap: 0; /* Remove gap if only one item, or keep it if needed. The 320px media query might need check. */
+        }
+      }
+
       @media (max-width: 768px) {
+        .dashboard-scan {
+          display: none;
+        }
+
         .hero h1 {
           font-size: 2.5rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          padding: 60px 0;
+        }
+
+        .feature-card {
+          padding: 24px;
         }
 
         .os-grid {
