@@ -1,14 +1,14 @@
 :root {
-    --bg-deep: #02040a;
-    --bg-surface: #0b101b;
-    --accent-primary: #3b82f6;
-    --accent-glow: #6366f1;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --text-heading: #f1f5f9;
-    --border-light: rgba(255, 255, 255, 0.08);
-    --glass: rgba(11, 16, 27, 0.6);
-    --gradient-main: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    --bg-deep: #ffffff;
+    --bg-surface: #f8fafc;
+    --accent-primary: #2563eb;
+    --accent-glow: #4f46e5;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-heading: #0f172a;
+    --border-light: rgba(0, 0, 0, 0.08);
+    --glass: rgba(255, 255, 255, 0.7);
+    --gradient-main: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -43,8 +43,10 @@ h1 {
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     margin-bottom: var(--spacing-lg);
-    background: linear-gradient(to right, #ffffff, #94a3b8);
+    margin-bottom: var(--spacing-lg);
+    background: linear-gradient(to right, #0f172a, #475569);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
 }
@@ -55,7 +57,7 @@ h2 {
     margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-sm);
     border-bottom: 1px solid var(--border-light);
-    color: #e2e8f0;
+    color: #1e293b;
 }
 
 p, ul, ol {
@@ -65,7 +67,7 @@ p, ul, ol {
 }
 
 strong {
-    color: #f1f5f9;
+    color: #0f172a;
     font-weight: 600;
 }
 
@@ -106,8 +108,8 @@ a:hover {
     pointer-events: none;
     z-index: -1;
     background: 
-        radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 90%, rgba(99, 102, 241, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(79, 70, 229, 0.05) 0%, transparent 40%);
 }
 
 .grid-lines {
@@ -117,8 +119,8 @@ a:hover {
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
     background-size: 60px 60px;
     z-index: -1;
     mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
@@ -137,7 +139,7 @@ a:hover {
 header {
     padding: 24px 0;
     border-bottom: 1px solid var(--border-light);
-    background: rgba(2, 4, 10, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
@@ -157,7 +159,7 @@ header {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1.25rem;
-    color: white;
+    color: var(--text-heading);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -165,7 +167,7 @@ header {
 }
 
 .logo:hover {
-    color: white;
+    color: var(--accent-primary);
 }
 
 .logo-icon {
@@ -175,7 +177,7 @@ header {
     border-radius: 6px;
     display: grid;
     place-items: center;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
 }
 
 .logo-icon svg {
@@ -196,14 +198,14 @@ header {
     border-radius: 99px;
     border: 1px solid var(--border-light);
     transition: all 0.2s;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.02);
 }
 
 .back-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-heading);
     text-decoration: none;
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Content */
@@ -227,14 +229,14 @@ main {
 }
 
 .important-clause strong {
-    color: #60a5fa;
+    color: var(--accent-primary);
 }
 
 /* Footer */
 footer {
     border-top: 1px solid var(--border-light);
     padding: 60px 0 40px;
-    background: #010205;
+    background: #f8fafc;
     text-align: center;
     margin-top: auto;
 }
@@ -259,7 +261,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: white;
+    color: var(--text-heading);
     text-decoration: none;
 }
 

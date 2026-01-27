@@ -16,15 +16,15 @@
 
     <style>
       :root {
-        --bg-deep: #02040a;
-        --bg-surface: #0b101b;
-        --accent-primary: #3b82f6;
-        --accent-glow: #6366f1;
-        --text-main: #f8fafc;
-        --text-muted: #94a3b8;
-        --border-light: rgba(255, 255, 255, 0.08);
-        --glass: rgba(11, 16, 27, 0.6);
-        --gradient-main: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        --bg-deep: #ffffff;
+        --bg-surface: #f8fafc;
+        --accent-primary: #2563eb;
+        --accent-glow: #4f46e5;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-light: rgba(0, 0, 0, 0.08);
+        --glass: rgba(255, 255, 255, 0.7);
+        --gradient-main: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
       }
 
       * {
@@ -69,8 +69,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
         background-size: 60px 60px;
         z-index: -1;
         mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
@@ -105,8 +104,8 @@
         width: 100%;
         z-index: 50;
         backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        background: rgba(2, 4, 10, 0.7);
+        border-bottom: 1px solid var(--border-light);
+        background: rgba(255, 255, 255, 0.8);
       }
 
       .nav_content {
@@ -119,7 +118,7 @@
         font-family: "Space Grotesk", sans-serif;
         font-weight: 700;
         font-size: 1.5rem;
-        color: white;
+        color: var(--text-main);
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -144,11 +143,11 @@
       }
 
       .nav-btn {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.03);
         border: 1px solid var(--border-light);
         padding: 10px 20px;
         border-radius: 99px;
-        color: white;
+        color: var(--text-main);
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 500;
@@ -156,8 +155,8 @@
       }
 
       .nav-btn:hover {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.06);
+        border-color: rgba(0, 0, 0, 0.1);
       }
 
       /* Hero Section */
@@ -201,8 +200,9 @@
         font-weight: 700;
         letter-spacing: -0.02em;
         margin-bottom: 24px;
-        background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%);
+        background: linear-gradient(to bottom, #0f172a 0%, #475569 100%);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: fadeIn 0.8s ease-out 0.1s backwards;
       }
@@ -255,15 +255,15 @@
       }
 
       .btn-glass {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.5);
         border: 1px solid var(--border-light);
-        color: white;
+        color: var(--text-main);
         backdrop-filter: blur(10px);
       }
 
       .btn-glass:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(0, 0, 0, 0.1);
         transform: translateY(-2px);
       }
 
@@ -313,8 +313,9 @@
       .section-title h2 {
         font-size: 2.5rem;
         margin-bottom: 16px;
-        background: linear-gradient(to right, #fff, #94a3b8);
+        background: linear-gradient(to right, #0f172a, #475569);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
@@ -373,7 +374,7 @@
       .feature-card h3 {
         font-size: 1.25rem;
         margin-bottom: 12px;
-        color: white;
+        color: var(--text-main);
       }
 
       .feature-card p {
@@ -384,7 +385,7 @@
 
       /* Download Section */
       .download-section {
-        background: linear-gradient(180deg, var(--bg-deep) 0%, #060912 100%);
+        background: linear-gradient(180deg, var(--bg-deep) 0%, #f1f5f9 100%);
         padding: 120px 0;
         border-top: 1px solid var(--border-light);
         text-align: center;
@@ -399,7 +400,7 @@
       }
 
       .os-card {
-        background: rgba(255, 255, 255, 0.02);
+        background: rgba(255, 255, 255, 0.5);
         border: 1px solid var(--border-light);
         border-radius: 24px;
         padding: 48px 32px;
@@ -413,7 +414,7 @@
       }
 
       .os-card:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.8);
         border-color: var(--accent-primary);
         transform: translateY(-8px);
         box-shadow: 0 20px 60px -20px rgba(59, 130, 246, 0.3);
@@ -423,7 +424,7 @@
         font-size: 3rem;
         margin-bottom: 24px;
         color: var(--text-main);
-        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+        filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.05));
         transition: transform 0.4s ease;
       }
 
@@ -435,7 +436,7 @@
         font-family: "Space Grotesk";
         font-size: 1.5rem;
         font-weight: 700;
-        color: white;
+        color: var(--text-main);
         margin-bottom: 8px;
       }
 
@@ -448,7 +449,7 @@
       footer {
         border-top: 1px solid var(--border-light);
         padding: 80px 0 40px;
-        background: #010205;
+        background: #f8fafc;
         color: var(--text-muted);
         text-align: center;
       }
@@ -469,7 +470,7 @@
       }
 
       .footer-links a:hover {
-        color: white;
+        color: var(--text-main);
       }
 
       /* Responsive */
@@ -515,7 +516,16 @@
           </div>
           CGPilote
         </a>
-        <a href="#download" class="nav-btn">Télécharger</a>
+        <div style="display: flex; gap: 24px; align-items: center">
+          <a
+            href="https://qcmanager.cgpilote.fr"
+            style="color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s"
+            onmouseover="this.style.color = 'var(--text-main)'"
+            onmouseout="this.style.color = 'var(--text-muted)'"
+            >QCManager</a
+          >
+          <a href="#download" class="nav-btn">Télécharger</a>
+        </div>
       </div>
     </header>
 
