@@ -29,6 +29,9 @@ class ParticleNetwork {
   }
 
   init() {
+    // Disable on mobile and tablet
+    if (window.innerWidth <= 1024) return;
+
     this.resize();
     this.createParticles();
     this.addEventListeners();
