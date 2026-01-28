@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CGPilote - Assistant pour Conseillers en Gestion de Patrimoine</title>
+    <title>CGPilote</title>
     <meta name="description" content="L'outil tout-en-un pour les Conseillers en Gestion de Patrimoine. Automatisation, conformité et simulation fiscale." />
 
     <!-- Fonts -->
@@ -18,14 +18,12 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="home-page">
-    <!-- Background Ambience -->
-    <div class="ambient-glow"></div>
-    <div class="grid-lines"></div>
+    <!-- Background Ambience Removed as per user request -->
 
     <header>
       <div class="container nav_content">
         <a href="#" class="logo">
-          <div class="logo-icon">
+          <div class="logo-icon" style="background-color: #0a2e5c">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
@@ -51,7 +49,7 @@
       <section class="hero">
         <div class="dashboard-scan"></div>
         <div class="container">
-          <h1>Le copilote intelligent des conseillers en gestion de patrimoine</h1>
+          <h1>Le copilote des conseillers en gestion de patrimoine</h1>
           <p>Libérez-vous de l'administratif et concentrez-vous sur la création de valeur pour vos clients</p>
 
           <div class="hero-cta">
@@ -191,6 +189,8 @@
       </div>
     </footer>
 
+    <canvas id="particles-canvas"></canvas>
+    <script src="particles.js"></script>
     <script>
       // Configuration
       const GITHUB_OWNER = "afkdev-maker";
