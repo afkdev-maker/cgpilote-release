@@ -30,9 +30,28 @@
           </div>
           CGPilote
         </a>
-        <div style="display: flex; gap: 24px; align-items: center">
+
+        <!-- Desktop Nav -->
+        <div class="desktop-nav" style="display: flex; gap: 24px; align-items: center">
           <a href="https://qcmanager.cgpilote.fr" class="nav-link-secondary" target="_blank">QCManager</a>
           <a href="#download" class="nav-btn">Télécharger</a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Overlay -->
+      <div class="mobile-menu">
+        <div class="mobile-menu-content">
+          <a href="https://qcmanager.cgpilote.fr" class="mobile-nav-link" target="_blank">QCManager</a>
+          <!-- 'Télécharger' is generally hidden on mobile as per existing CSS rules for download-section, but we can include it or leave it out. 
+               The user specifically asked about QCManager. I will leave Télécharger out of mobile menu if the section is hidden, 
+               but technically users might want to read about it? 
+               The previous CSS hid anchor[href="#download"] on mobile. I will respect that pattern for now unless I see reason otherwise. -->
         </div>
       </div>
     </header>
@@ -153,13 +172,25 @@
 
           <div class="os-grid">
             <a href="#" class="os-card" id="windows-download">
-              <div class="os-icon-lg">❖</div>
+              <div class="os-icon-lg">
+                <!-- Windows Logo (Flat, slightly scaled down for visual balance) -->
+                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="transform: scale(0.9)">
+                  <path d="M0 0h11.377v11.372H0zM12.623 0H24v11.372H12.623zM0 12.623h11.377V24H0zM12.623 12.623H24V24H12.623z" />
+                </svg>
+              </div>
               <div class="os-name">Windows</div>
               <div class="os-meta">Pour Windows · 64 bits</div>
             </a>
 
             <a href="#" class="os-card" id="macos-download">
-              <div class="os-icon-lg"></div>
+              <div class="os-icon-lg">
+                <!-- Apple Logo (Standard) -->
+                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em">
+                  <path
+                    d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.74 1.18 0 2.45-1.64 3.98-1.54 2.15.12 3.16 1.13 3.65 1.89-3.28 1.63-2.6 5.86.35 6.94-.46 1.4-1.4 3.46-3.06 4.94zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25 .15 2.29-2.04 4.14-3.74 4.25z"
+                  />
+                </svg>
+              </div>
               <div class="os-name">macOS</div>
               <div class="os-meta">Apple Silicon</div>
             </a>
@@ -270,6 +301,28 @@
           }
         });
       });
+
+      // Mobile Menu Toggle
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const header = document.querySelector("header");
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener("click", () => {
+          menuToggle.classList.toggle("active");
+          mobileMenu.classList.toggle("active");
+          document.body.classList.toggle("menu-open"); // To prevent scrolling if needed
+        });
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            menuToggle.classList.remove("active");
+            mobileMenu.classList.remove("active");
+            document.body.classList.remove("menu-open");
+          });
+        });
+      }
     </script>
   </body>
 </html>

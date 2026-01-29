@@ -43,6 +43,13 @@ body {
   position: relative; /* Ensure stacking context */
 }
 
+/* Ensure content sits ABOVE the particles */
+main,
+footer {
+  position: relative;
+  z-index: 2;
+}
+
 h1,
 h2,
 h3,
@@ -68,15 +75,8 @@ h4,
   top: 0;
   left: 0;
   width: 100%;
-  height: 850px; /* Limit strictly to hero area */
-  z-index: 0; /* Changed from -1 to 0 or appropriate positive to be visible? No, -1 is fine if body is transparent, but body has bg.
-               Wait, body has var(--bg-deep). If z-index is -1, it might be behind body background if not careful.
-               HTML structure: body -> canvas, header, main.
-               Canvas is child of body.
-               If z-index is -1, it goes behind the stacking context of body? No, just behind content.
-               Let's keep it simple: Make sure it's absolute at top. */
-  pointer-events: none;
-  pointer-events: none;
+  pointer-events: none; /* Let clicks pass through */
+  z-index: 0;
 }
 
 .container {
@@ -100,6 +100,7 @@ h4,
   backdrop-filter: blur(12px);
   background: rgba(255, 255, 255, 0.9);
   transition: padding 0.3s ease;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .home-page header.scrolled {
@@ -113,6 +114,7 @@ h4,
   align-items: center;
   max-width: 1600px;
   margin: 0 auto;
+  min-height: 52px; /* Adjust height to match button size for consistency */
 }
 
 .logo {
@@ -171,6 +173,100 @@ h4,
   color: var(--text-main);
 }
 
+/* Mobile Menu Elements (Dropdown Style) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-main);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: absolute; /* Dropdown from header */
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); /* Soft shadow */
+  
+  /* Animation properties */
+  transform: translateY(-20px);
+  opacity: 0;
+  visibility: hidden; /* Use visibility for accessibility */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1; /* Behind header content visually if overlapping, but header has bg */
+  /* Actually, z-index -1 moves it behind the header background? 
+     Header is parent. Header has background. 
+     If header has background, z-index -1 puts it behind header background.
+     That might be desired for "sliding out from under".
+     But header background is semi-transparent blur. 
+     If I want it to look like it slides OUT, -1 is good. */
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centered items as requested */
+  gap: 16px; 
+  padding: 0 24px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 12px 24px; /* More padding for button-like touch area */
+  border-bottom: none; /* Removed border for centered clean look */
+  width: auto; /* Let it be auto width to center nicely */
+  display: inline-block; /* Helps with centering */
+  text-align: center;
+  transition: all 0.2s;
+  border-radius: 8px; /* Slight radius for hover effect */
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-link:hover {
+  color: var(--accent-primary);
+  background: rgba(0,0,0,0.03); /* Subtle background instead of left movement */
+  padding-left: 24px; /* Reset padding shift */
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -185,7 +281,7 @@ h4,
 }
 
 .hero .container {
-    max-width: 1100px;
+    max-width: 1200px;
 }
 
 .hero h1 {
@@ -205,7 +301,6 @@ h4,
   color: var(--text-muted);
   margin: 0 auto 64px;
   animation: fadeIn 0.8s ease-out 0.2s backwards;
-  max-width: 800px;
   font-weight: 400;
 }
 
@@ -261,15 +356,17 @@ h4,
 }
 
 .btn-glass {
-  background: transparent;
+  background: white; /* Solid background */
   border: 1px solid var(--border-light);
   color: var(--text-main);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Slight shadow for lift */
 }
 
 .btn-glass:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: #f8fafc; /* Slightly darker white on hover */
   border-color: rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nav-btn {
@@ -327,6 +424,7 @@ h4,
 
 .section-title h2 {
   font-size: 2.5rem;
+  margin-top: 24px;
   margin-bottom: 24px;
   color: var(--text-main);
   background: none;
@@ -335,7 +433,7 @@ h4,
 
 .section-title p {
   color: var(--text-muted);
-  max-width: 600px;
+  max-width: 1100px;
   margin: 0 auto;
   font-size: 1.125rem;
 }
@@ -405,7 +503,7 @@ h4,
 /* Download Section */
 .download-section {
   background: var(--bg-deep); /* Keep it white/clean */
-  padding: 160px 0;
+  padding-top: 160px;
   border-top: none;
   text-align: center;
 }
@@ -501,45 +599,29 @@ footer {
   flex-direction: column;
 }
 
-/* Legal Header (Sticky) */
+/* Legal Header (Sticky to match feel but keep sticky behavior) */
 .legal-page header {
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-light);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 50;
+  transition: padding 0.3s ease;
 }
 
-.legal-page .nav-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.legal-page .logo {
+.legal-page .logo,
+.legal-page .logo:hover {
+  text-decoration: none;
   color: var(--text-main);
 }
 
-.legal-page .logo:hover {
-  color: var(--accent-primary);
-  text-decoration: none;
-}
-
-.legal-page .logo-icon {
-  width: 28px;
-  height: 28px;
-  /* border-radius: 6px; */ /* Keeping home standard 8px */
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
-}
-
-.legal-page .logo-icon svg {
-  width: 16px;
-  height: 16px;
+/* Use .container .nav_content structure like home */
+.legal-page .nav_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .legal-page .back-btn {
@@ -549,19 +631,19 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
-  border-radius: 99px;
+  padding: 10px 24px; /* Matches home nav-btn padding exactly */
+  border-radius: 999px;
   border: 1px solid var(--border-light);
   transition: all 0.2s;
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.03); /* Match home nav-btn background */
   text-decoration: none;
 }
 
 .legal-page .back-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--text-heading);
-  text-decoration: none;
+  background: rgba(0, 0, 0, 0.06);
   border-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-main);
+  text-decoration: none;
 }
 
 /* Legal Content */
@@ -571,8 +653,8 @@ footer {
 }
 
 /* Legal Container Override */
-.legal-page .container {
-  max-width: 800px; /* Narrower for text readability */
+.legal-page main .container {
+  max-width: 1100px; /* Keep narrower for text readability in MAIN */
 }
 
 /* Generic Text Styles Scoped to Legal */
@@ -661,6 +743,17 @@ footer {
   text-align: center;
 }
 
+/* Override general legal page link styles for footer */
+.legal-page .footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.legal-page .footer-links a:hover {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
 .tagline {
   color: var(--text-muted);
   font-size: 0.95rem;
@@ -715,9 +808,18 @@ footer {
 }
 
 @media (max-width: 1024px) {
-  .download-section,
-  a[href="#download"] {
+  .download-section {
     display: none !important;
+  }
+  
+  /* Hide Desktop Nav */
+  .desktop-nav {
+    display: none !important;
+  }
+  
+  /* Show Mobile Menu Toggle */
+  .menu-toggle {
+    display: flex;
   }
   
   /* Hide particles on tablet/mobile */
@@ -739,6 +841,11 @@ footer {
   .logo-icon svg {
     width: 18px;
     height: 18px;
+  }
+
+  /* Hide hero download button on mobile/tablet */
+  .hero-cta .btn-primary {
+    display: none;
   }
 }
 
@@ -773,10 +880,20 @@ footer {
     font-size: 0.8rem;
   }
   
-  .nav-btn {
+  .nav-btn,
+  .back-btn {
     padding: 8px 16px;
     font-size: 0.85rem;
   }
+
+  .nav-btn,
+  .back-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* Make QCManager link look like a button on mobile to match style/height of Legal text button */
+  /* This block removed as part of moving QCManager to menu */
 
   .dashboard-scan {
     display: none;
@@ -808,6 +925,7 @@ footer {
   }
 
   .section-title h2 {
+    margin-top: 0px;
     font-size: 1.75rem; /* Reduced from 2rem to maintain hierarchy with Hero H1 */
   }
 
@@ -868,6 +986,7 @@ footer {
   }
 
   .section-title h2 {
+    margin-top: 0px;
     font-size: 1.35rem; /* Reduced from 1.75rem to be strictly smaller than Hero H1 (1.75rem) */
   }
 
